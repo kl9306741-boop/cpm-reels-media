@@ -1,0 +1,38 @@
+{
+  "versao": 1,
+  "descricao": "Política de aprovação automática dos Reels públicos do CPM para a ponte Cloudinary -> Metricool. Alterações só por pull request revisado pelo fundador.",
+  "editorial": {
+    "padrao_nome": "^CPM_S[0-9]{1,2}_R[0-9]{1,3}_[a-z0-9_]{3,80}_IG(_[0-9]{1,3}MB)?\\.mp4$",
+    "ficha_campos_obrigatorios": ["arquivo", "serie", "reel", "titulo", "roteiro_ref"],
+    "ficha_checklist_obrigatorio": [
+      "conteudo_publico_cpm",
+      "sem_dados_pessoais",
+      "sem_pessoas_identificaveis_sem_autorizacao",
+      "sem_conteudo_sigiloso_de_provas",
+      "audio_e_imagens_licenciados",
+      "texto_revisado"
+    ]
+  },
+  "tecnica": {
+    "tamanho_max_bytes": 95000000,
+    "video_codec": "h264",
+    "largura": 1080,
+    "altura": 1920,
+    "fps_min": 23,
+    "fps_max": 60,
+    "audio_codec": "aac",
+    "audio_obrigatorio": false,
+    "duracao_min_s": 3,
+    "duracao_max_s": 90
+  },
+  "cota": {
+    "limite_creditos_plano": 25,
+    "parar_em_percentual": 60,
+    "max_pendentes": 5,
+    "max_envios_dia": 5
+  },
+  "exclusao": {
+    "hosts_copia_metricool": [],
+    "tolerancia_duracao_s": 0.25
+  }
+}

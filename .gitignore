@@ -1,0 +1,5 @@
+# Vídeos nunca entram no histórico Git
+*.mp4
+*.mov
+entrada/
+registro/

@@ -1,0 +1,15 @@
+{
+  "arquivo": "CPM_S1_R2_seu_local_de_trabalho_IG_8MB.mp4",
+  "serie": "S1",
+  "reel": "R2",
+  "titulo": "Seu local de trabalho",
+  "roteiro_ref": "S1-R2",
+  "checklist": {
+    "conteudo_publico_cpm": true,
+    "sem_dados_pessoais": true,
+    "sem_pessoas_identificaveis_sem_autorizacao": true,
+    "sem_conteudo_sigiloso_de_provas": true,
+    "audio_e_imagens_licenciados": true,
+    "texto_revisado": true
+  }
+}

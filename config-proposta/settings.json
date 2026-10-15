@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./scripts/cpm-upload.sh entrada/*)",
+      "Bash(./scripts/cpm-delete.sh *)",
+      "Bash(./scripts/cpm-cota.sh)"
+    ],
+    "deny": [
+      "Edit(scripts/**)",
+      "Edit(politica/**)",
+      "Edit(.claude/**)",
+      "Edit(.gitignore)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 60,
+            "command": "IN=$(cat); cd \"$CLAUDE_PROJECT_DIR\" || exit 2; P='scripts politica .claude/settings.json'; case \"$IN\" in *cpm-upload*|*cpm-delete*|*cpm-cota*) git fetch -q origin main 2>/dev/null || { echo 'CPM: falha ao buscar origin/main; scripts CPM bloqueados' >&2; exit 2; }; R=FETCH_HEAD;; *) R=refs/remotes/origin/main;; esac; if git diff --quiet \"$R\" -- $P 2>/dev/null && [ -z \"$(git status --porcelain --untracked-files=all -- $P)\" ]; then printf '%s' \"$IN\" | /bin/bash scripts/cpm-guard.sh; else case \"$IN\" in *cpm-upload*|*cpm-delete*|*cpm-cota*) echo 'CPM: scripts/, politica/ ou .claude/settings.json divergem de origin/main (rode git pull ou descarte as alteracoes locais). Execucao bloqueada.' >&2; exit 2;; *) exit 0;; esac; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
